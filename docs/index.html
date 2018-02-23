@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coding 101</title>
+    <title>Coding 102</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           rel="stylesheet"
           type="text/css">
@@ -22,21 +22,21 @@
   </head>
   <body>
     <div id="app">
-      <div>
-        <span>RESULT: {{ result }}</span>
+      <div class="alert alert-primary" role="alert">
+        <span><strong>RESULT:</strong> {{ result }}</span>
       </div>
       <hr>
-      <div>
+      <div class="alert alert-light" role="alert" v-if="working.length > 0">
         <span v-for="entry in working">{{ entry }}, </span>
       </div>
 
       <div class="inputs">
-        <button v-for="key in inputs" v-on:click="enterKey(key)">
+        <button class="btn btn-primary mr5" v-for="key in inputs" v-on:click="enterKey(key)">
           {{ key }}
         </button>
       </div>
       <div class="actions">
-        <button v-for="action in actions" v-on:click="perform(action)">
+        <button class="btn btn-success mr5" v-for="action in actions" v-on:click="perform(action)">
           {{ action }}
         </button>
       </div>
