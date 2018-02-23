@@ -26,18 +26,18 @@
         <span><strong>RESULT:</strong> {{ result }}</span>
       </div>
       <hr>
-      <div class="alert alert-light" role="alert" v-if="working.length > 0">
-        <span v-for="entry in working">{{ entry }}, </span>
+      <div class="alert alert-light" role="alert">
+        <strong>VALUES:</strong> <span v-for="(entry, indx) in working"><span v-if="indx > 0">, </span>{{ entry }}</span>
       </div>
 
       <div class="inputs">
-        <button class="btn btn-primary mr5" v-for="key in inputs" v-on:click="enterKey(key)">
+        <button class="btn btn-primary" v-for="key in inputs" v-on:click="enterKey(key)">
           {{ key }}
         </button>
       </div>
       <div class="actions">
-        <button class="btn btn-success mr5" v-for="action in actions" v-on:click="perform(action)">
-          {{ action }}
+        <button class="btn mr5" v-for="action in actions" v-on:click="perform(action)" v-bind:class="colorFor(action)">
+          <i v-bind:class="iconFor(action)"></i>
         </button>
       </div>
     </div>

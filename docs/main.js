@@ -7,11 +7,23 @@ controls of your choice, but you can't just point the user to
 something like Desmos or pull in a 'calculator widget'
 */
 
+const actionColors = {
+  add: ['btn-success'],
+  subtract: ['btn-success'],
+  clear: ['btn-danger']
+}
+
+const actionIcons = {
+  add: ['fa', 'fa-plus'],
+  subtract: ['fa', 'fa-minus'],
+  clear: ['fa', 'fa-refresh']
+}
+
 const app = new Vue({
   el: "#app",
   data: {
-    inputs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-    actions: ['+', '-', 'AC'],
+    inputs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+    actions: ['add', 'subtract', 'clear'],
     working: [],
     result: 0
   },
@@ -28,17 +40,23 @@ const app = new Vue({
       this.working.push(val)
       this.result = val
     },
+    colorFor: function(action) {
+      return actionColors[action]
+    },
+    iconFor: function(action) {
+      return actionIcons[action]
+    },
     perform: function(action) {
       let val = null
       switch (action) {
-        case 'AC':
+        case 'clear':
           this.clear()
           break
-        case '+':
+        case 'add':
           val = this.working.reduce((acc, num) => { return acc + num }, 0)
           this.updateResults(val)
           break
-        case '-':
+        case 'subtract':
           val = this.working.reduce((acc, num) => { return acc ? acc - num : num }, 0)
           this.updateResults(val)
           break

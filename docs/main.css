@@ -6,8 +6,15 @@
 .inputs {
   margin-top: 10px;
   margin-bottom: 10px;
+  max-width: 200px;
 }
 
 .mr5 {
   margin-right: 5px;
+}
+
+button {
+  margin: 5px;
+  min-width: 40px;
+  min-height: 40px;
 }
