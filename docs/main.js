@@ -57,7 +57,7 @@ const app = new Vue({
           this.updateResults(val)
           break
         case 'subtract':
-          val = this.working.reduce((acc, num) => { return acc ? acc - num : num }, 0)
+          val = this.working.reduce((acc, num, indx) => { return indx === 0 ? num : acc - num }, 0)
           this.updateResults(val)
           break
         default:
