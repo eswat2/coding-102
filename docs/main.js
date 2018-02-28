@@ -10,12 +10,14 @@ something like Desmos or pull in a 'calculator widget'
 const actionColors = {
   add: ['btn-success'],
   subtract: ['btn-success'],
+  multiply: ['btn-success'],
   clear: ['btn-danger']
 }
 
 const actionIcons = {
   add: ['fa', 'fa-plus'],
   subtract: ['fa', 'fa-minus'],
+  multiply: ['fa', 'fa-times'],
   clear: ['fa', 'fa-refresh']
 }
 
@@ -23,7 +25,7 @@ const app = new Vue({
   el: "#app",
   data: {
     inputs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
-    actions: ['add', 'subtract', 'clear'],
+    actions: ['add', 'subtract', 'multiply', 'clear'],
     working: [],
     result: 0
   },
@@ -50,16 +52,21 @@ const app = new Vue({
       let val = null
       const list = this.working
       const first = list.length > 0 ? list[0] : 0
+      const rest = list.slice(1)
       switch (action) {
         case 'clear':
           this.clear()
           break
         case 'add':
-          val = list.slice(1).reduce((acc, num) => { return acc + num }, first)
+          val = rest.reduce((acc, num) => { return acc + num }, first)
           this.updateResults(val)
           break
         case 'subtract':
-          val = list.slice(1).reduce((acc, num, indx) => { return acc - num }, first)
+          val = rest.reduce((acc, num, indx) => { return acc - num }, first)
+          this.updateResults(val)
+          break
+        case 'multiply':
+          val = rest.reduce((acc, num, indx) => { return acc * num }, first)
           this.updateResults(val)
           break
         default:
