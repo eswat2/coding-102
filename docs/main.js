@@ -48,16 +48,18 @@ const app = new Vue({
     },
     perform: function(action) {
       let val = null
+      const list = this.working
+      const first = list.length > 0 ? list[0] : 0
       switch (action) {
         case 'clear':
           this.clear()
           break
         case 'add':
-          val = this.working.reduce((acc, num) => { return acc + num }, 0)
+          val = list.slice(1).reduce((acc, num) => { return acc + num }, first)
           this.updateResults(val)
           break
         case 'subtract':
-          val = this.working.reduce((acc, num, indx) => { return indx === 0 ? num : acc - num }, 0)
+          val = list.slice(1).reduce((acc, num, indx) => { return acc - num }, first)
           this.updateResults(val)
           break
         default:
